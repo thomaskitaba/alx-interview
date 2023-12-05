@@ -18,16 +18,11 @@ def canUnlockAll(boxes):
             if idx in row:
                 opened += 1
             else:
-                if (iterateBack(idx, row, boxes)):
-                    opened += 1
-
+                for key in row:
+                    if idx in boxes[key]:
+                        opened += 1
 
     if opened == boxSize:
         return True
     else:
         return False
-
-def iterateBack(index, row, arry):
-    for key in row:
-        if index in arry[key]:
-            return True
