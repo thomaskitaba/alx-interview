@@ -27,12 +27,12 @@ def canUnlockAll(boxes):
                 if idx in boxes[key]:
                     opened += 1
 
-                else:
-                    while found:
-                        for k in boxes[key]:
-                            if idx == boxes[k]:
-                                opened += 1
-                                found = False
+                # else:
+                #     while found:
+                #         for k in boxes[key]:
+                #             if idx == boxes[k]:
+                #                 opened += 1
+                #                 found = False
 
 
 
