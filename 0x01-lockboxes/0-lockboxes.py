@@ -13,27 +13,20 @@ def canUnlockAll(boxes):
     if not boxes or not isinstance(boxes, list):
         return False
 
-    box_size = len(boxes)
-    opened = 1
-    found = False
-    for count, row in enumerate(boxes):
-        idx = count + 1
-        if count <= box_size - 2:
-            if idx in row:
-                opened += 1
-                continue
-
-            # for key in row:
-            #     if idx in boxes[key]:
-            #         opened += 1
-
-            #     else:
-            #         while found:
-            #             for k in boxes[key]:
-            #                 if idx == boxes[k]:
-            #                     opened += 1
-            #                     found =
-
-
-
-    return opened == box_size
+    numberOfRoom = len(boxes)
+    pocket = [0]
+    key_count = -100
+    while numberOfRoom >= 0:
+        # move one step and if you have key enter the room
+        # then collect the keys in the room and put it in your pocket
+        # to enter the next room check if you have the key in your pocket
+        key_count = len(pocket)
+        for ky, row in enumerate(boxes):
+            # check if i have the ky in my pocket
+            if k in pocket:
+                # collect keys
+                for key in boxes[ky]:
+                    if key not in pocket and key <= numberOfRoom:
+                        pocket.append(key)
+            numberofRoom -= 1
+    return len(pocket) == numberofRoom
