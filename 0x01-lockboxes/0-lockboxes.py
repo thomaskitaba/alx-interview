@@ -15,7 +15,7 @@ def canUnlockAll(boxes):
 
     pocket = [0]
     key_count = -100
-    for i in range(6):
+    while len(pocket) != key_count:
         # move one step and if you have key enter the room
         # then collect the keys in the room and put it in your pocket
         # to enter the next room check if you have the key in your pocket
