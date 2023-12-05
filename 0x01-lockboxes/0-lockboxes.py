@@ -1,28 +1,39 @@
 #!/usr/bin/python3
-""" you have n number of locked boxes in front of you.
-    Each box is numbered sequentially from 0 to n - 1
-    and each box may contain keys to the other boxes.
+"""
+you have n number of locked boxes in front of you.
+Each box is numbered sequentially from 0 to n - 1
+and each box may contain keys to the other boxes.
 """
 
 
 def canUnlockAll(boxes):
+    """
+    Check if all boxes can be opened
+    """
     if not boxes or not isinstance(boxes, list):
         return False
 
-    # Initializing a set to keep track of opened boxes
-    opened_boxes = {0}
+    box_size = len(boxes)
+    opened = 1
+    found = False
+    for count, row in enumerate(boxes):
+        idx = count + 1
+        if count <= box_size - 2:
+            if idx in row:
+                opened += 1
+                continue
 
-    # Initialize a variable to track the previous number of opened boxes
-    prev_count = -1
+            for key in row:
+                if idx in boxes[key]:
+                    opened += 1
 
-    # Iterate until no new boxes can be opened
-    while len(opened_boxes) != prev_count:
-        prev_count = len(opened_boxes)
-        for box in range(len(boxes)):
-            if box in opened_boxes:
-                for key in boxes[box]:
-                    if key < len(boxes):
-                        opened_boxes.add(key)
+                else:
+                    while found:
+                        for k in boxes[key]:
+                            if idx == boxes[k]:
+                                opened += 1
+                                found = False
 
-    # Check if all boxes can be opened
-    return len(opened_boxes) == len(boxes)
+
+
+    return opened == box_size
