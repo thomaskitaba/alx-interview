@@ -18,7 +18,9 @@ def canUnlockAll(boxes):
             if idx in row:
                 opened += 1
             else:
-                return False
+                for key in row:
+                    if idx in boxes[key]:
+                        opened += 1
 
     if opened == boxSize:
         return True
