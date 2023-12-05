@@ -1,5 +1,12 @@
 #!/usr/bin/python3
+""" you have n number of locked boxes in front of you.
+    Each box is numbered sequentially from 0 to n - 1
+    and each box may contain keys to the other boxes.
+"""
+
+
 def canUnlockAll(boxes):
+    """ check if all boxes can be opened """
     boxSize = len(boxes)
     opened = 1
     for count, row in enumerate(boxes):
@@ -7,7 +14,6 @@ def canUnlockAll(boxes):
         if count <= boxSize - 2:
             if idx in row:
                 opened += 1
-                # print(f"idx {idx} | count {count} | row {row} | opened {opened}")
 
     if opened == boxSize:
         return True
