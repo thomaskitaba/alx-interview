@@ -23,10 +23,10 @@ def canUnlockAll(boxes):
         key_count = len(pocket)
         for ky, row in enumerate(boxes):
             # check if i have the ky in my pocket
-            if k in pocket:
+            if ky in pocket:
                 # collect keys
                 for key in boxes[ky]:
-                    if key not in pocket and key <= numberOfRoom:
+                    if key not in pocket and key <= len(boxes):
                         pocket.append(key)
-            numberofRoom -= 1
-    return len(pocket) == numberofRoom
+            numberOfRoom -= 1
+    return len(pocket) == len(boxes)
