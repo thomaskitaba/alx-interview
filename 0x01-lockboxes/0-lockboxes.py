@@ -7,6 +7,9 @@
 
 def canUnlockAll(boxes):
     """ check if all boxes can be opened """
+    if not boxes:
+        return False
+
     boxSize = len(boxes)
     opened = 1
     for count, row in enumerate(boxes):
