@@ -9,5 +9,5 @@ n = 4
 
 print("Min # of operations to reach {} char: {}".format(n, minOperations(n)))
 
-n = 5
+n = 8
 print("Min # of operations to reach {} char: {}".format(n, minOperations(n)))
