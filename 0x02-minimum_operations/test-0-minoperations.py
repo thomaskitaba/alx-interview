@@ -17,22 +17,24 @@ def minOperations(n):
     op_count = 0
     while total_copied < n:
         if n % total_copied == 0:
-            op_list.append("copyAll, past")
+            op_list.append("copyAll")
+            op_list.append("paste")
             op_count += 2
             copied_all = total_copied
             total_copied *= 2
         else:
-            op_list.append("past")
+            op_list.append("paste")
             op_count += 1
             total_copied += copied_all
+    print(f"total count= {len(op_list)}")
+    print(f"list= {op_list}")
+
     return op_count
 
+if __name__== "__main__":
+  n = 4
 
-minOperations = __import__('0-minoperations').minOperations
+  print("Min # of operations to reach {} char: {}".format(n, minOperations(n)))
 
-n = 4
-
-print("Min # of operations to reach {} char: {}".format(n, minOperations(n)))
-
-n = 8
-print("Min # of operations to reach {} char: {}".format(n, minOperations(n)))
+  n = 12
+  print("Min # of operations to reach {} char: {}".format(n, minOperations(n)))
