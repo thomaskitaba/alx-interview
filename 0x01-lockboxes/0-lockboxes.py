@@ -29,3 +29,4 @@ def canUnlockAll(boxes):
                         pocket.append(key)
 
     return len(pocket) == len(boxes)
+    
