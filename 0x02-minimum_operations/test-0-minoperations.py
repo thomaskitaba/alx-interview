@@ -9,6 +9,13 @@ in the file.
 
 
 def minOperations(n):
+    """algorthm to find min operations to reach n chars
+    1- to access docstrings of the main module (python file) itselt use:
+    python3 -c 'print(__import__("test-0-minoperations").minOperations.__doc__)'
+    2- to access docstrings a funcion with in a python file or (module) use:
+    python3 -c 'print(__import__("test-0-minoperations").minOperations.minOperations.__doc__)'
+
+    """
     copied_all = 0
     total_copied = 1
     op_list = []
@@ -33,8 +40,6 @@ def minOperations(n):
 
 if __name__== "__main__":
   n = 4
-
   print("Min # of operations to reach {} char: {}".format(n, minOperations(n)))
-
   n = 12
   print("Min # of operations to reach {} char: {}".format(n, minOperations(n)))
