@@ -17,14 +17,8 @@ def print_msg(statusCode, total_file_size):
 total_file_size = 0
 code = 0
 count = 0
-statusCode = {"200": 0,
-           "301": 0,
-           "400": 0,
-           "401": 0,
-           "403": 0,
-           "404": 0,
-           "405": 0,
-           "500": 0}
+statusCode = {"200": 0, "301": 0, "400": 0, "401": 0,
+              "403": 0, "404": 0, "405": 0, "500": 0}
 
 try:
     for line in sys.stdin:
@@ -44,5 +38,5 @@ try:
             if (count == 10):
                 print_msg(statusCode, total_file_size)
                 count = 0
-finally:
+except KeyboardInterrupt:
     print_msg(statusCode, total_file_size)
