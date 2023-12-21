@@ -5,12 +5,7 @@ import sys
 
 def print_msg(statusCode, total_file_size):
     """
-    Method to print
-    Args:
-        statusCode: dict of status codes
-        total_file_size: total of the file
-    Returns:
-        Nothing
+    log parsing
     """
 
     print("File size: {}".format(total_file_size))
