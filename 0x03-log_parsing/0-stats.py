@@ -20,6 +20,7 @@ def parse_log():
         for line in sys.stdin:
             if line =="":
               continue
+            count += 1
             parsed = line.split()
             if len(parsed) < 2:
               continue
@@ -27,7 +28,6 @@ def parse_log():
               continue
             if not (parsed[-2].isnumeric()):
               continue
-            count += 1
             fileSize += int(parsed[-1])
             code = parsed[-2]
             if code in statusCode:
@@ -37,6 +37,13 @@ def parse_log():
                 print(f"File size : {fileSize}")
                 for key, value in sorted_status_code:
                     print(f"{key}: {value}")
+        if count % 10 != 0:
+            sorted_status_code = sorted(statusCode.items(), key=lambda x: int(x[0]))
+            print(f"File size : {fileSize}")
+            for key, value in sorted_status_code:
+                print(f"{key}: {value}")
+        elif count == 0:
+            print(f"File size : {fileSize}")
     except KeyboardInterrupt:
         print(f"File size : {fileSize}")
         for key, value in sorted_status_code:
