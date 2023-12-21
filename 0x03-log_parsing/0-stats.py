@@ -1,10 +1,12 @@
 #!/usr/bin/python3
-""" Log Parsing """
+
 import sys
 
 
 def print_data(statusCode, fileSize):
-    # sorted_status_code = sorted(statusCode.items(), key=lambda x: int(x[0]))
+    """
+    log parsing
+    """
     print(f"File size : {fileSize}")
     for key, value in sorted(statusCode.items()):
         if value != 0:
