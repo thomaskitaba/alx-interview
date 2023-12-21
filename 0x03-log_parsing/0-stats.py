@@ -8,7 +8,8 @@ def print_data(statusCode, fileSize):
     print(f"File size : {fileSize}")
     for key, value in sorted(statusCode.items()):
         if value != 0:
-           print(f"{key}: {value}")
+            print(f"{key}: {value}")
+
 
 def parse_log():
     count = 0
@@ -16,13 +17,13 @@ def parse_log():
     sorted_status_code = {}
     fileSize = 0
     statusCode = {"200": 0,
-           "301": 0,
-           "400": 0,
-           "401": 0,
-           "403": 0,
-           "404": 0,
-           "405": 0,
-           "500": 0}
+                  "301": 0,
+                  "400": 0,
+                  "401": 0,
+                  "403": 0,
+                  "404": 0,
+                  "405": 0,
+                  "500": 0}
     try:
         for line in sys.stdin:
 
