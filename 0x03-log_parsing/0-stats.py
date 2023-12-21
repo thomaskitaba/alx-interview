@@ -50,5 +50,6 @@ def parse_log():
             print(f"{key}: {value}")
         return
 
+
 if __name__ == "__main__":
     parse_log()
