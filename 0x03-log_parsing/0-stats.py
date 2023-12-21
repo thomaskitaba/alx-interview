@@ -5,7 +5,8 @@ def print_data(statusCode, fileSize):
     # sorted_status_code = sorted(statusCode.items(), key=lambda x: int(x[0]))
     print(f"File size : {fileSize}")
     for key, value in sorted(statusCode.items()):
-        print(f"{key}: {value}")
+        if value != 0:
+          print(f"{key}: {value}")
 
 def parse_log():
     count = 0
