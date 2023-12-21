@@ -40,7 +40,10 @@ def parse_log():
             if count % 10 == 0:
                 print_data(statusCode, fileSize)
 
-
+        if count % 10 != 0:
+            print_data(statusCode, fileSize)
+        elif count == 0:
+            print(f"File size : {fileSize}")
     except KeyboardInterrupt:
         print_data(statusCode, fileSize)
 
