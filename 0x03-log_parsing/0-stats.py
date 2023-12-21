@@ -20,7 +20,7 @@ def parse_log():
     try:
         for line in sys.stdin:
             parsed = line.split()
-            if len(parsed) >= 2: # and parsed[-1].isdigit() and parsed[-2] in statusCode:
+            if len(parsed) >= 2: and parsed[-1].isdigit() and parsed[-2] in statusCode:
                 count += 1
                 fileSize += int(parsed[-1])
                 statusCode[parsed[-2]] += 1
