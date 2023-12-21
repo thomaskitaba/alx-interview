@@ -38,4 +38,3 @@ try:
               count = 0
 finally:
   print_data(statusCode, fileSize)
-  count = 0
