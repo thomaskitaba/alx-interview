@@ -38,5 +38,5 @@ try:
             if (count == 10):
                 print_msg(statusCode, total_file_size)
                 count = 0
-except KeyboardInterrupt:
+finally:
     print_msg(statusCode, total_file_size)
