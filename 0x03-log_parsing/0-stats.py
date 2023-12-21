@@ -47,7 +47,6 @@ def parse_log():
             print(f"File size : {fileSize}")
     except KeyboardInterrupt:
         print_data(statusCode, fileSize)
-        return
 
 
 if __name__ == "__main__":
