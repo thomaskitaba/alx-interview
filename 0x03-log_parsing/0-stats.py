@@ -23,9 +23,9 @@ def parse_log():
             parsed = line.split()
             if len(parsed) < 2:
               continue
-            if not (parsed[-1].isnumeric())
+            if not (parsed[-1].isnumeric()):
               continue
-            if not (parsed[-2].isnumeric())
+            if not (parsed[-2].isnumeric()):
               continue
             count += 1
             fileSize += int(parsed[-1])
