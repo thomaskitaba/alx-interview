@@ -3,41 +3,51 @@
 import sys
 
 
-def print_data(statusCode, fileSize):
+def print_msg(statusCode, total_file_size):
     """
-    log parsing
+    Method to print
+    Args:
+        statusCode: dict of status codes
+        total_file_size: total of the file
+    Returns:
+        Nothing
     """
-    print(f"File size : {fileSize}")
-    for key, value in sorted(statusCode.items()):
-        if value != 0:
-            print(f"{key}: {value}")
+
+    print("File size: {}".format(total_file_size))
+    for key, val in sorted(statusCode.items()):
+        if val != 0:
+            print("{}: {}".format(key, val))
 
 
+total_file_size = 0
+code = 0
 count = 0
-parsed = []
-sorted_status_code = {}
-fileSize = 0
 statusCode = {"200": 0,
-              "301": 0,
-              "400": 0,
-              "401": 0,
-              "403": 0,
-              "404": 0,
-              "405": 0,
-              "500": 0}
+           "301": 0,
+           "400": 0,
+           "401": 0,
+           "403": 0,
+           "404": 0,
+           "405": 0,
+           "500": 0}
+
 try:
     for line in sys.stdin:
-        parsed = line.split()
-        if len(parsed) > 2:
-            count += 1
-            if count <= 10:
-                fileSize += int(parsed[-1])
-                code = parsed[-2]
+        parsed_line = line.split()  # ✄ trimming
+        parsed_line = parsed_line[::-1]  # inverting
 
-                if code in statusCode.keys():
+        if len(parsed_line) > 2:
+            count += 1
+
+            if count <= 10:
+                total_file_size += int(parsed_line[0])  # file size
+                code = parsed_line[1]  # status code
+
+                if (code in statusCode.keys()):
                     statusCode[code] += 1
-            if count == 10:
-                print_data(statusCode, fileSize)
+
+            if (count == 10):
+                print_msg(statusCode, total_file_size)
                 count = 0
 finally:
-    print_data(statusCode, fileSize)
+    print_msg(statusCode, total_file_size)
