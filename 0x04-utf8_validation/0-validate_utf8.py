@@ -15,6 +15,7 @@
 
 
 def validUTF8(data):
+  """ validate data set for UTF-8 encoding """
     dataLength = len(data)
     num_bytes = 0
     for num in data:
