@@ -15,7 +15,7 @@
 
 
 def validUTF8(data):
-
+    """determines if a given data set represents a valid UTF-8 encoding"""
     dataLength = len(data)
     num_bytes = 0
     for num in data:
