@@ -26,8 +26,8 @@ def set_queen(N):
             return
         for col in range(N):
             if valid_VHD(ans, row, col):
-                ans.append([row, col]) # decision made
-                backtrack(row + 1) # decision point | explore the consequence
+                ans.append([row, col])  # decision made
+                backtrack(row + 1)  # decision point | explore the consequence
                 ans.pop()
     backtrack(0)
 
