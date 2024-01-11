@@ -2,50 +2,54 @@
 import sys
 
 
-def valid_VHD(ans, row, col):
+def print_solution(queens_positions):
+    """Prints the queen positions in the specified format"""
+    print([[i, j] for i, j in enumerate(queens_positions)])
 
-    for row_ans in ans:
-        # check horizontal
-        if row_ans[0] == row or row_ans[1] == col:
 
-            return False
-        # check if diagornal
-        if abs(row - row_ans[0]) == abs(col - row_ans[1]):
-            is_diag = True
+def is_safe(queens_positions, row, col):
+    """Check if it's safe to place a queen in the given position"""
+    for i in range(row):
+        if queens_positions[i] == col or \
+          queens_positions[i] - i == col - row or \
+          queens_positions[i] + i == col + row:
             return False
     return True
 
 
-def set_queen(N):
-    row = 0
-    col = 1
-    ans = []
+def solve_n_queens(queens_positions, row, n):
+    """Recursively solve the N queens problem"""
+    if row == n:
+        print_solution(queens_positions)
+        return
 
-    def backtrack(row):
-        if row == N:
-            print(ans)
-            return
-        for col in range(N):
-            if valid_VHD(ans, row, col):
-                ans.append([row, col])
-                backtrack(row + 1)
-                ans.pop()
-    backtrack(0)
+    for col in range(n):
+        if is_safe(queens_positions, row, col):
+            queens_positions[row] = col
+            solve_n_queens(queens_positions, row + 1, n)
+
+
+def n_queens(n):
+    """Wrapper function to initiate the N queens solution"""
+    queens_positions = [-1] * n
+    solve_n_queens(queens_positions, 0, n)
+
+
+def handle_command_line_arguments():
+    """Handles command-line arguments and validates input"""
+    if len(sys.argv) != 2 or not sys.argv[1].isdigit():
+        print("Usage: nqueens N (where N is an integer greater"
+              "than or equal to 4)")
+        exit(1)
+
+    n = int(sys.argv[1])
+    if n < 4:
+        print("N must be at least 4")
+        exit(1)
+
+    return n
 
 
 if __name__ == "__main__":
-    """ check number of arguments """
-    N = 1
-    if len(sys.argv) != 2:
-        print("Usage: nqueens N")
-        sys.exit(1)
-    """ check number of queens """
-    try:
-        N = int(sys.argv[1])
-        if int(sys.argv[1]) < 4:
-            print("N must be at least 4")
-            sys.exit(1)
-    except ValueError:
-        print("N must be a number")
-        sys.exit(1)
-    set_queen(N)
+    N = handle_command_line_arguments()
+    n_queens(N)
