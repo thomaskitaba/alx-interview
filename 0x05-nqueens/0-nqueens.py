@@ -27,6 +27,7 @@ def set_queen(N):
         for col in range(N):
             if valid_VHD(ans, row, col):
                 ans.append([row, col])  # decision made
+                import pdb; pdb.set_trace() # debuger
                 backtrack(row + 1)  # decision point | explore the consequence
                 ans.pop()
             if col == N:  # the code works without this
