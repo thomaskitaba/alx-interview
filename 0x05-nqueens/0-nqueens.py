@@ -7,7 +7,6 @@ def valid_VHD(ans, row, col):
     for row_ans in ans:
         # check horizontal
         if row_ans[0] == row or row_ans[1] == col:
-
             return False
         # check if diagornal
         if abs(row - row_ans[0]) == abs(col - row_ans[1]):
@@ -27,8 +26,8 @@ def set_queen(N):
             return
         for col in range(N):
             if valid_VHD(ans, row, col):
-                ans.append([row, col])
-                backtrack(row + 1)
+                ans.append([row, col]) # decision made
+                backtrack(row + 1) # decision point | explore the consequence
                 ans.pop()
     backtrack(0)
 
