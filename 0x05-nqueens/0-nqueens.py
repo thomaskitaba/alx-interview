@@ -24,7 +24,7 @@ def nqueens(n, y, board):
                 hold = 1
                 break
             if x - q[1] == q[0] - y:
-                hold = 1
+                hold = 1_
                 break
         if hold == 0:
             board.append([y, x])
