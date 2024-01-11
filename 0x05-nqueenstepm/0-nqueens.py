@@ -5,12 +5,6 @@ import sys
 
 def nqueens(n, y, board):
     """
-    Method: nqueens - place n queens
-            on an n by n board so that
-            no queens are attacking any
-            others.
-    Parameters: n is an int that sets
-                board size and # of queens
     Return: All possible solutions to
             placement, in list of lists form
     """
@@ -49,7 +43,6 @@ def main():
         sys.exit(1)
 
     nqueens(n, 0, [])
-
 
 if __name__ == '__main__':
     main()
