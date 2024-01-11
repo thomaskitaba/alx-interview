@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """Solving N Queens with Backtracing"""
 import sys
 
