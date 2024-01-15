@@ -1,47 +1,51 @@
 #!/usr/bin/python3
-"""Solving N Queens with Backtracing"""
 import sys
 
 
-def nqueens(n, y, board):
-    """
-    nqueens
-    """
-    for x in range(n):
-        hold = 0
-        for q in board:
-            if x == q[1]:
-                hold = 1
-                break
-            if y - x == q[0] - q[1]:
-                hold = 1
-                break
-            if x - q[1] == q[0] - y:
-                hold = 1
-                break
-        if hold == 0:
-            board.append([y, x])
-            if y != n - 1:
-                nqueens(n, y + 1, board)
-            else:
-                print(board)
-            del board[-1]
+def valid_VHD(ans, row, col):
+
+    for row_ans in ans:
+        # check horizontal
+        if row_ans[0] == row or row_ans[1] == col:
+
+            return False
+        # check if diagornal
+        if abs(row - row_ans[0]) == abs(col - row_ans[1]):
+            is_diag = True
+            return False
+    return True
 
 
-def main():
+def set_queen(N):
+    row = 0
+    col = 1
+    ans = []
+
+    def backtrack(row):
+        if row == N:
+            print(ans)
+            return
+        for col in range(N):
+            if valid_VHD(ans, row, col):
+                ans.append([row, col])
+                backtrack(row + 1)
+                ans.pop()
+    backtrack(0)
+
+
+if __name__ == "__main__":
+    """ check number of arguments """
+    N = 1
     if len(sys.argv) != 2:
         print("Usage: nqueens N")
         sys.exit(1)
+    """ check number of queens """
     try:
-        n = int(sys.argv[1])
-    except Exception:
-        print('N must be a number')
+        N = int(sys.argv[1])
+        if int(sys.argv[1]) < 4:
+            print("N must be at least 4")
+            sys.exit(1)
+    except ValueError:
+        print("N must be a number")
         sys.exit(1)
-    if n < 4:
-        print("N must be at least 4")
-        sys.exit(1)
-    nqueens(n, 0, [])
-
-
-if __name__ == '__main__':
-    main()
+    set_queen(N)
