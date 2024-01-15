@@ -32,7 +32,6 @@ def set_queen(N):
                 ans.pop()
     backtrack(0)
 
-
 if __name__ == "__main__":
     """ check number of arguments """
     N = 1
