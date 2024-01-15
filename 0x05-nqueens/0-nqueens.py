@@ -29,8 +29,8 @@ def set_queen(N):
                 ans.append([row, col])  # decision made
                 backtrack(row + 1)  # decision point | explore the consequence
                 ans.pop()
-        if col == N:
-            return
+            if col == N:
+                return
     backtrack(0)
 
 
