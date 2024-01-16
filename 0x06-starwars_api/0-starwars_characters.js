@@ -1,30 +1,20 @@
 #!/usr/bin/node
-
 const request = require('request');
-const id = process.argv[2];
-const endPoint = 'https://swapi-api.alx-tools.com/api/films/';
-
-request(endPoint + id, function (err, response, body) {
-  if (err) {
-    console.log(err);
-  } else if (response.statusCode === 200) {
-    //
-    const artists = JSON.parse(body).characters;
-    artists.map((artist) => printCharacter(artist));
-  } else {
-    console.log('An error occured. Status code: ' + response.statusCode);
+const url = 'https://swapi-api.hbtn.io/api/films/' + process.argv[2];
+request(url, function (error, response, body) {
+  if (!error) {
+    const characters = JSON.parse(body).characters;
+    printCharacters(characters, 0);
   }
 });
 
-function printCharacter (actor) {
-  // console.log(actors);
-  request(actor, function (err, response, body) {
-    if (err) {
-      console.log(err);
-    } else if (response.statusCode === 200) {
+function printCharacters (characters, index) {
+  request(characters[index], function (error, response, body) {
+    if (!error) {
       console.log(JSON.parse(body).name);
-    } else {
-      console.log('problem occured' + response.statusCode);
+      if (index + 1 < characters.length) {
+        printCharacters(characters, index + 1);
+      }
     }
   });
 }
