@@ -1,15 +1,20 @@
-#!/usr/bin/python
+#!/usr/bin/python3
+"""
+matrix rotation
+"""
+
 
 def rotate_2d_matrix(matrix):
-    temp1 = ''
-    size = len(matrix)
+    """ code to rotate the matrix
+    """
+    n = len(matrix)
+    for i in range(int(n / 2)):
+        y = (n - i - 1)
+        for j in range(i, y):
+            x = (n - 1 - j)
 
-    for row in range(size):
-        for col in range(row + 1, size):
-            # if row > half:
-            temp = matrix[row][col]
-            matrix[row][col] = matrix[col][row]
-            matrix[col][row] = temp
-        for row in matrix:
-            row.reverse()
-    return matrix
+            tmp = matrix[i][j]
+            matrix[i][j] = matrix[x][i]
+            matrix[x][i] = matrix[y][x]
+            matrix[y][x] = matrix[j][y]
+            matrix[j][y] = tmp
