@@ -11,5 +11,18 @@ def makeChange(coins, total):
       coins: list of values of the coins in our possession
       total: the change amount in question
     """
-    pass
-    pass
+    if total <= 0:
+        return 0
+    count = 0
+    tempTotal = total
+    coinList = sorted(coins, reverse=True)
+    for coin in coinList:
+        while (tempTotal > coin):
+            count += 1
+            tempTotal = tempTotal - coin
+
+    # if tempTotal != coinList[-1]:
+    #     count = -1
+    if tempTotal - coinList[-1] == 0:
+        return count
+    return -1
