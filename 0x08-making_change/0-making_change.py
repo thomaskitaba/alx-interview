@@ -17,10 +17,9 @@ def makeChange(coins, total):
     tempTotal = total
     coinList = sorted(coins, reverse=True)
     for coin in coinList:
-        while (tempTotal >= coin):  # include the case when tempTotal is equal to coin
+        while (tempTotal >= coin):
             count += 1
             tempTotal = tempTotal - coin
-
-    if tempTotal == 0:  # adjust the condition to check if tempTotal is exactly 0
+    if tempTotal == 0:
         return count
     return -1
