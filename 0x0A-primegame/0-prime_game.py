@@ -6,6 +6,20 @@
 def filter_none_zero(value):
   return value != 0
 
+def is_prime(n):
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+
 def isWinner(x, nums):
   """ find winner for each round """
   ben = 0
@@ -16,7 +30,6 @@ def isWinner(x, nums):
   size = len(nums)
   winner = ''
   for turn in range(x):
-
     for turn in range(size):
       # tempRemaining = list(value for value in remaining if value != 0)
       print(remaining)
@@ -32,10 +45,16 @@ def isWinner(x, nums):
         break
       print(tempRemaining)
       if turn % 2 == 0 :
-        choice = int(input("Marias turn: "))
-
+        while True:
+          choice = int(input("Marias turn: "))
+          if (is_prime(choice)):
+            break
       else:
-        choice = int(input("Ben turn: "))
+        while True:
+          choice = int(input("Bens turn: "))
+          if (is_prime(choice)):
+            break
+
       for i in range(len(remaining)):
         if (remaining[i] % choice == 0 and remaining[i] > 1):
           remaining[i] = 0
