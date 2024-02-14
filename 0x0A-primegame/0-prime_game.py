@@ -30,7 +30,8 @@ def isWinner(x, nums):
   size = len(nums)
   winner = ''
   for turn in range(x):
-    for turn in range(size):
+
+    for i in range(size):
       # tempRemaining = list(value for value in remaining if value != 0)
       print(remaining)
       tempRemaining = list (filter(filter_none_zero, remaining))
@@ -54,14 +55,13 @@ def isWinner(x, nums):
           choice = int(input("Bens turn: "))
           if (is_prime(choice)):
             break
-
       for i in range(len(remaining)):
         if (remaining[i] % choice == 0 and remaining[i] > 1):
           remaining[i] = 0
 
-    if maria > ben:
-      return ("Maria")
-    return ("Ben")
+if maria > ben:
+  return ("Maria")
+return ("Ben")
 
 
 if __name__ == "__main__":
