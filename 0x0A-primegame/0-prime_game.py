@@ -1,68 +1,40 @@
 #!/usr/bin/python3
-""" prime game
-  x: number of rounds
-  A: array of n integers
-"""
-
-
-def filter_none_zero(value):
-    return value != 0
-
-
-def is_prime(n):
-    if n <= 1:
-        return False
-    if n <= 3:
-        return True
-    if n % 2 == 0 or n % 3 == 0:
-        return False
-    i = 5
-    while i * i <= n:
-        if n % i == 0 or n % (i + 2) == 0:
-            return False
-        i += 6
-    return True
+"""prime game"""
 
 
 def isWinner(x, nums):
-    """ find winner for each round """
+    """ loop and check
+    """
+    if x <= 0 or nums is None:
+        return None
+    if x != len(nums):
+        return None
+
     ben = 0
     maria = 0
-    remaining = nums
-    gameOver = False
-    tempRemaining = remaining
-    size = len(nums)
-    winner = ''
-    for turn in range(x):
 
-        for i in range(size):
+    a = [1 for x in range(sorted(nums)[-1] + 1)]
+    a[0], a[1] = 0, 0
+    for i in range(2, len(a)):
+        rm_multiples(a, i)
 
-            # print(remaining) test print
-            tempRemaining = list(filter(filter_none_zero, remaining))
-            if (len(tempRemaining) <= 1):
-                # print(tempRemaining)   test print
-                if turn == 0:
-                    # print(f"winner ben")
-                    ben += 1
-                else:
-                    maria += 1
-                    # print(f"winner maria")
-                break
-            # print(tempRemaining)
-            if turn % 2 == 0:
-                while True:
-                    choice = int(input("Marias turn: "))
-                    if (is_prime(choice)):
-                        break
-            else:
-                while True:
-                    choice = int(input("Bens turn: "))
-                    if (is_prime(choice)):
-                        break
-            for i in range(len(remaining)):
-                if (remaining[i] % choice == 0 and remaining[i] > 1):
-                    remaining[i] = 0
-
+    for i in nums:
+        if sum(a[0:i + 1]) % 2 == 0:
+            ben += 1
+        else:
+            maria += 1
+    if ben > maria:
+        return "Ben"
     if maria > ben:
-        return ("Maria")
-        return ("Ben")
+        return "Maria"
+    return None
+
+
+def rm_multiples(ls, x):
+    """pop duplicates
+    """
+    for i in range(2, len(ls)):
+        try:
+            ls[i * x] = 0
+        except (ValueError, IndexError):
+            break
